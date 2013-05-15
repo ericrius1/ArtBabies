@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "landscape.js",
+  "sourceRoot": "..",
+  "sources": [
+    "landscape.coffee"
+  ],
+  "names": [],
+  "mappings": ";AAyJqB;CAAA;CAAA"
+}
