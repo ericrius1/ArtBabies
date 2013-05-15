@@ -5,10 +5,11 @@
   coffee_draw = function(p5) {
     p5.setup = function() {
       p5.size($(window).width(), $(window).height(), p5.P3D);
-      p5.mutationRate = 0.4;
+      p5.mutationRate = 0.1;
       p5.mutationStrength = 2;
       p5.createRandomGenerationData();
-      return p5.newGeneration();
+      p5.newGeneration();
+      return console.log(1);
     };
     p5.newGeneration = function() {
       var x, _i, _ref, _results;
@@ -16,6 +17,7 @@
       this.BeanNodes = [];
       p5.background(0);
       p5.numGenes = Object.keys(this.curGenData);
+      this.curGenData.startingNodes = p5.round(this.curGenData.startingNodes);
       this.curGenData.drawFrequency = 1;
       _results = [];
       for (x = _i = 0, _ref = this.curGenData.startingNodes; _i < _ref; x = _i += 1) {
@@ -29,11 +31,11 @@
         y_offModifier: p5.random(-20, 20),
         x_offIncrementer: p5.random(-0.01, 0.01),
         y_offIncrementer: p5.random(-0.01, 0.01),
-        vel: p5.random(0, 60),
+        vel: p5.random(-30, 30),
         accel: -0.003,
         hue: p5.random(0, 360),
         alpha: p5.random(4, 100),
-        startingNodes: p5.random(1, 5)
+        startingNodes: p5.round(p5.random(1, 5))
       };
     };
     p5.draw = function() {
@@ -95,7 +97,6 @@
           this.curGenData[key] = this.prevPrevGenData[key];
         }
         i++;
-        console.log("New " + key + " is " + this.curGenData[key]);
       }
       p5.mutateNewGeneration();
       return p5.newGeneration();
@@ -109,9 +110,7 @@
       _results = [];
       for (key in this.curGenData) {
         if (p5.random(1) < this.mutationRate) {
-          console.log(key + " mutated!");
-          this.curGenData[key] *= p5.random(this.mutationStrength);
-          _results.push(console.log("New value is " + this.curGenData[key]));
+          _results.push(this.curGenData[key] *= p5.random(this.mutationStrength));
         } else {
           _results.push(void 0);
         }
@@ -189,9 +188,6 @@
       var a, b, h, s;
 
       this.p5.colorMode(this.p5.HSB, 360, 100, 100);
-      if (this.x + this.y < 1) {
-        console.log(this.x + this.y);
-      }
       h = this.p5.map(this.x + this.y, 0, this.p5.width + this.p5.height, 0, 360);
       s = 100;
       b = 100;

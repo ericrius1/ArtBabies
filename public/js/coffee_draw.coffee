@@ -5,6 +5,7 @@ coffee_draw = (p5) ->
     p5.mutationStrength = 2 #how much  on average to mutate the values of the attributes that are chosen to be mutated
     p5.createRandomGenerationData()
     p5.newGeneration()
+    console.log(1)
 
   p5.newGeneration = ->
     @BeanNodes = []
@@ -22,7 +23,7 @@ coffee_draw = (p5) ->
       y_offModifier : p5.random(-20, 20)
       x_offIncrementer : p5.random(-0.01, 0.01)
       y_offIncrementer : p5.random(-0.01, 0.01)
-      vel : p5.random(0, 60)
+      vel : p5.random(-30, 30)
       accel : -0.003
       hue : p5.random(0, 360)
       alpha : p5.random(4, 100)
