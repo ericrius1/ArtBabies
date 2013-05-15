@@ -1,7 +1,7 @@
 coffee_draw = (p5) ->
   p5.setup =  ->
     p5.size $(window).width(), $(window).height(), p5.P3D
-    p5.mutationRate = 0.4 #percentage of attributes likely to be mutated
+    p5.mutationRate = 0.1 #percentage of attributes likely to be mutated
     p5.mutationStrength = 2 #how much  on average to mutate the values of the attributes that are chosen to be mutated
     p5.createRandomGenerationData()
     p5.newGeneration()
@@ -10,7 +10,7 @@ coffee_draw = (p5) ->
     @BeanNodes = []
     p5.background 0
     p5.numGenes = Object.keys(@curGenData)
-    #@curGenData.drawFrequency = Math.round(p5.map(@curGenData.startingNodes, 1, 100, 1, 10))
+    @curGenData.startingNodes = p5.round(@curGenData.startingNodes)
     @curGenData.drawFrequency = 1
     for x in [0...@curGenData.startingNodes] by 1
       @BeanNodes.push(new BeanNode(p5, @curGenData));

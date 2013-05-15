@@ -5,7 +5,7 @@
   coffee_draw = function(p5) {
     p5.setup = function() {
       p5.size($(window).width(), $(window).height(), p5.P3D);
-      p5.mutationRate = 0.4;
+      p5.mutationRate = 0.1;
       p5.mutationStrength = 2;
       p5.createRandomGenerationData();
       return p5.newGeneration();
